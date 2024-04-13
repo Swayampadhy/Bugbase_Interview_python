@@ -1,7 +1,4 @@
-# Bugbase_Interview_python
-This repository contains the codes of the Python scripting task required for security engineer intern position at Bugbase.
-
-## Introduction
+# Introduction
 --------
 This repository contains the codes of the Python scripting task required for security engineer intern position at Bugbase. The task is to create 2 python scripts in which script1 sends a user specified file to script2. Script2 saves the file in a designated folder and runs the "File" command on it. The output is formatted as JSON and sent back to script1.
 
@@ -12,7 +9,7 @@ This repository contains the codes of the Python scripting task required for sec
 ![image](https://github.com/Swayampadhy/Bugbase_Interview_python/assets/37104162/7d9f7ae3-bdd9-4f78-8045-1a6db354ee79)
 
 
-## Working
+# Working
 ----------
 This project consists of two scripts - script1.py and script2.py. It's working is as follows -
 
