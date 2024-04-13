@@ -55,3 +55,7 @@ This project consists of two scripts - script1.py and script2.py. It's working i
 
    ![image](https://github.com/Swayampadhy/Bugbase_Interview_python/assets/37104162/6d787d20-93e9-4088-ae90-a1066aa1ada6)
 
+
+# To-Do
+------
+1. Add AES encryption to file transfer and encrypt the AES key with RSA.
