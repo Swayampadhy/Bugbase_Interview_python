@@ -59,3 +59,4 @@ This project consists of two scripts - script1.py and script2.py. It's working i
 # To-Do
 ------
 1. Add AES encryption to file transfer and encrypt the AES key with RSA.
+2. Add SSL
