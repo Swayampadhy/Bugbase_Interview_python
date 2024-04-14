@@ -47,7 +47,7 @@ This project consists of two scripts - script1.py and script2.py. It's working i
 
 5. In another terminal, run - `python script1.py <file name>` and specify the desired file to transfer as a command line argument and run.
 
-   ![image](https://github.com/Swayampadhy/Bugbase_Interview_python/assets/37104162/a3dd55f5-3463-4bfb-a7fc-1838b9e4bdf4)
+  ![image](https://github.com/Swayampadhy/Bugbase_Interview_python/assets/37104162/a62c9494-051f-4a3d-b068-6147d02fdc16)
 
 6. Now upon executing `ls` command, it can be seen that a JSON file has been created. This JSON file has the results of the FILE operation saved on disk.
 
@@ -55,8 +55,7 @@ This project consists of two scripts - script1.py and script2.py. It's working i
 
 7. Going back to the previous terminal, it can be seen that script2 has also printed it's output and stopped executing.
 
-   ![image](https://github.com/Swayampadhy/Bugbase_Interview_python/assets/37104162/6d787d20-93e9-4088-ae90-a1066aa1ada6)
-
+   ![image](https://github.com/Swayampadhy/Bugbase_Interview_python/assets/37104162/fe8faef8-1e7d-41e4-b013-bd76a8322ad0)
 
 # To-Do
 ------
