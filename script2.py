@@ -2,6 +2,13 @@ import socket
 import os
 import subprocess
 import json
+import hashlib
+from Crypto.Cipher import AES
+
+KEY = hashlib.sha256(b"some random password").digest()	                                            # Creating an AES key
+
+IV = b"abcdefghijklmnop"							                                            	#Initialization vector should always be 16 bit
+obj_dec = AES.new(KEY, AES.MODE_CFB, IV)					                                    	#creating an object to decrypt our data with
 
 # Function to Receive file and Generate JSON
 def receive_file_and_execute(host, port, folder_name):
@@ -15,7 +22,8 @@ def receive_file_and_execute(host, port, folder_name):
             with conn:                                                                              # Confirmation for connection established
                 print(f"Connected to {addr}")
             
-                received_data = conn.recv(2048).decode()                                            # Receiving and splitting filename and file contents
+                received_data = obj_dec.decrypt(conn.recv(2048)).decode('utf-8')                    # Receiving and decrypting data
+                print("Decrypting data")
                 split_data = received_data.split('\n', 1)
                 filename = split_data[0]                                                            # Split filename
                 file_contents = split_data[1] if len(split_data) > 1 else ''                        # File contents
@@ -40,9 +48,6 @@ def receive_file_and_execute(host, port, folder_name):
         print(f'Socket error: {e}')
     except Exception as e:                                                                          # Handling Exceptions
         print(f'Unexpected error: {e}')
-    finally:
-        conn.close()
-        s.close()                                                                                   # Close the connection
     
 
 def main():

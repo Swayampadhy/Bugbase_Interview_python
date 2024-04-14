@@ -1,6 +1,13 @@
 import socket
 import os
 import sys
+import hashlib
+from Crypto.Cipher import AES
+
+KEY = hashlib.sha256(b"some random password").digest()		                # AES Key
+
+IV = b"abcdefghijklmnop"								                 	#Initialization vector should always be 16 bit
+obj_enc = AES.new(KEY, AES.MODE_CFB, IV)					            	#creating an object to encrypt our data with
 
 # Function to Upload File
 def upload_file(filename, host, port , file_contents):
@@ -9,8 +16,11 @@ def upload_file(filename, host, port , file_contents):
             s.connect((host, port))
             print(f"Connected to {host}:{port}")
 
-            s.sendall((os.path.basename(filename)+'\n').encode())          # Sending the filename to the script2 server
-            s.sendall(file_contents.encode())                              # Sending the file contents to the script2 server
+            message = f"{os.path.basename(filename)}\n{file_contents}"     # Creating data message
+            message_enc = obj_enc.encrypt(message.encode('utf-8'))         # Encrypting data with AES
+            print("Encrypting data with AES")
+            print("Encrypted data:", message_enc)
+            s.sendall(message_enc)                                         # Sending data to the script2 server
             print(f"File '{filename}' uploaded successfully.")             # Confirm the upload
             
             json_data = s.recv(1024).decode()                              # Receiving and printing the JSON data
