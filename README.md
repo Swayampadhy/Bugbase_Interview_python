@@ -1,6 +1,6 @@
 # Introduction
 --------
-This repository contains the codes of the Python scripting task required for security engineer intern position at Bugbase. The task is to create 2 python scripts in which script1 sends a user specified file to script2. Script2 saves the file in a designated folder and runs the "File" command on it. The output is formatted as JSON and sent back to script1.
+This repository contains the codes of the Python scripting task required for security engineer intern position at Bugbase. The task is to create 2 python scripts in which script1 sends a user specified file encrypted using AES-256 to script2. Script2 decrypts the data and saves the file in a designated folder and runs the "File" command on it. The output is formatted as JSON and sent back to script1.
 
 
 # Design
@@ -17,16 +17,18 @@ This project consists of two scripts - script1.py and script2.py. It's working i
 2. Then the contents of the specified file is stored in a variable.
 3. Script1 creates a TCP socket and connects to script2 which is acting as a server.
 4. While starting script2, the user is asked to specify a foldername in which the received file is going to be stored.
-5. Script1 then sends both the filename and the filecontents to script2 through the TCP connection.
-6. Both data are separated using a delimiter - '\n' and they are split at script2 into an array.
-7. Script2 checks if the specified foldername is created or not. If it is not created, then it uses the os.makedirs() module to create one.
-8. A file path is created by joining the received filename and the foldername using os.path.join() function.
-9. The file is written in the file path.
-10. Script2 uses the python's subprocess module to create a new process to run unix's "File" command on the received file.
-11. Output from the command is sent bak to script1 as JSON data using the JSON module.
-12. Script1 receives the JSON data and prints it to stdout.
-13. The received JSON data is also saved to a created JSON file.
-14. The scripts can also handle runtime exceptions and show the underlying problem.
+5. Script1 encrypts the data using AES-256 using the provided key and initialization vector.
+6. Script1 then sends the encrypted data to script2 through the TCP connection.
+7. Script2 receives the encrypted data and decrypts it using the same key and IV.
+8. Both filename and file contents are separated using a delimiter - '\n' and they are split at script2 into an array.
+9. Script2 checks if the specified foldername is created or not. If it is not created, then it uses the os.makedirs() module to create one.
+10. A file path is created by joining the received filename and the foldername using os.path.join() function.
+11. The file is written in the file path.
+12. Script2 uses the python's subprocess module to create a new process to run unix's "File" command on the received file.
+13. Output from the command is sent bak to script1 as JSON data using the JSON module.
+14. Script1 receives the JSON data and prints it to stdout.
+15. The received JSON data is also saved to a created JSON file.
+16. The scripts can also handle runtime exceptions and show the underlying problem.
 
 # Steps to run
 -----------
@@ -58,5 +60,4 @@ This project consists of two scripts - script1.py and script2.py. It's working i
 
 # To-Do
 ------
-1. Add AES encryption to file transfer and encrypt the AES key with RSA.
-2. Add SSL
+Add SSL to the TCP connection
